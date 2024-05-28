@@ -8,10 +8,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     networks:
       mynetwork:
         ipv4_address: 172.16.0.54
@@ -36,9 +35,10 @@ services:
     #    ipv4_address: 172.16.0.55
 
   web:
-    build:
-      dockerfile: Dockerfile
-      context: .
+    image: educat:latest
+    # build:
+    #   dockerfile: Dockerfile
+    #   context: .
     ports:
       - 8000:8000
     command: python manage.py runserver 0.0.0.0:8000
