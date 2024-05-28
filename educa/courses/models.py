@@ -3,6 +3,7 @@ from django.utils.translation import gettext as _
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
+from .fields import OrderField
 
 # Create your models here.
 class Subject(models.Model):
@@ -70,12 +71,13 @@ class Module(models.Model):
 
     title = models.CharField(_("module title"), max_length=200)
     description  = models.TextField(_("description"), blank=True)
+    order = OrderField(blank=True, for_fields=['course'])
     class Meta:
         verbose_name = _("Module")
         verbose_name_plural = _("Modules")
-
+        ordering = ['order']
     def __str__(self):
-        return self.name
+        return f'{self.order}. {self.title}' 
 
     def get_absolute_url(self):
         pass
@@ -103,16 +105,15 @@ class Content(models.Model):
                                      })
     object_id = models.PositiveIntegerField()
     item = GenericForeignKey('content_type', 'object_id')
+    order = OrderField(blank=True, for_fields=['module'])
     
-
     class Meta:
         verbose_name = _("Content")
         verbose_name_plural = _("Contents")
+        ordering = ['order']
 
     def __str__(self):
         return self.object_id
-
-
 
 class ItemBase(models.Model):
     """module content 多态基础类
