@@ -117,7 +117,6 @@ class Content(models.Model):
 
 class ItemBase(models.Model):
     """module content 多态基础类
-
     Attributes:
         eggs: An integer count of the eggs we have laid.
     """
