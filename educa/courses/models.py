@@ -43,7 +43,7 @@ class Course(models.Model):
     title = models.CharField(_("courses title"), max_length=200)
     slug = models.SlugField(_("course slug"), unique=True)
     overview = models.TextField(_("course describe"))
-    created = models.DateTimeField(_("created"), auto_now_add=False)
+    created = models.DateTimeField(_("created"), auto_now_add=True)
     
     class Meta:
         verbose_name = _("Course")
