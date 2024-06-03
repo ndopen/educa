@@ -3,5 +3,6 @@
         "dotenv",
         "educa",
         "psycopg"
-    ]
+    ],
+    "commentTranslate.targetLanguage": "zh-CN"
 }
