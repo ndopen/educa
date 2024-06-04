@@ -10,7 +10,7 @@
     <h1>Course "{{ course.title }}"</h1>
     <div class="contents">
         <h3>Modules</h3>
-        <ul id="module">
+        <ul id="modules">
             {% for m in course.modules.all %}
                 <li data-id="{{ m.id }}" {% if m == module %}class="selected"{% endif %}>
                     <a href="{% url "module_content_list" m.id %}">
@@ -88,7 +88,7 @@
 
   const moduleOrderUrl = '{% url "module_order" %}';
 
-  sortable('#module', {
+  sortable('#modules', {
     forcePlaceholderSize: true,
     placeholderClass: 'placeholder'
   })[0].addEventListener('sortupdate', function(e) {
@@ -107,6 +107,7 @@
       fetch(moduleOrderUrl, options)
     });
   });
+
 
   const contentOrderUrl = '{% url "content_order" %}';
 
