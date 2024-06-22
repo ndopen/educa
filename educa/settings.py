@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # educa Apps
     'educa.courses.apps.CoursesConfig',
+    'educa.students.apps.StudentsConfig',
 ]
 
 MIDDLEWARE = [
